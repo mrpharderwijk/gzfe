@@ -68,8 +68,10 @@ export class ObjectHelper {
    * @param obj
    */
   static isEmpty(obj: any): boolean {
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) return false;
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        return false;
+      }
     }
     return true;
   }
@@ -101,9 +103,11 @@ export class ObjectHelper {
   }
 
   static toArray(obj: any): any[] {
-    let array = [];
+    const array = [];
     // iterate backwards ensuring that length is an UInt32
+    /* tslint:disable */
     for (let i = obj.length >>> 0; i--; ) {
+      /* tslint:enable */
       array[i] = obj[i];
     }
     return array;

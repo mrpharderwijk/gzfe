@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NewsApiService } from './shared/services/news-api.service';
 import { Article } from './shared/models/article.model';
 import { catchError } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   articles: Article[] = [];
   articlesCache: Article[];
   sources: any[] = [];

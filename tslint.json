@@ -7,7 +7,7 @@
   },
   "extends": [
     "tslint-defocus",
-    "./gz-tslint.json",
+    "./src/gz-lint.json",
     "tslint-config-prettier"
   ]
 }

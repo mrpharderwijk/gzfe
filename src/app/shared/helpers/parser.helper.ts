@@ -8,12 +8,12 @@ import { ObjectHelper } from '../helpers/object.helpter';
 // flattens an object (recursively!), similarly to Array#flatten
 // e.g. flatten({ a: { b: { c: "hello!" } } }); // => "hello!"
 function flatten(object) {
-  var check = ObjectHelper.isPlainObject(object) && ObjectHelper.size(object) === 1;
+  const check = ObjectHelper.isPlainObject(object) && ObjectHelper.size(object) === 1;
   return check ? flatten(ObjectHelper.values(object)[0]) : object;
 }
 
 export function parse(xml) {
-  let data = {};
+  const data = {};
   // xml = ObjectHelper.toArray(xml.children)[0];
 
   const isText = xml.nodeType === 3;
@@ -50,7 +50,7 @@ export function parse(xml) {
 
   // recursively call #parse over children, adding results to data
   ObjectHelper.toArray(xml.children).forEach(child => {
-    var name = child.nodeName;
+    const name = child.nodeName;
 
     // if we've not come across a child with this nodeType, add it as an object
     // and return here
