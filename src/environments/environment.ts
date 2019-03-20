@@ -6,10 +6,10 @@ export const environment = {
   production: false,
   domain: {
     gzfe: {
-      BASE: 'http://localhost:4201',
+      BASE: 'https://gzfe.herokuapp.com',
     },
     gzbe: {
-      BASE: 'http://localhost:4204',
+      BASE: 'https://gzbe.herokuapp.com',
     },
   },
   serviceUrls: {
