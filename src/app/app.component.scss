@@ -1,0 +1,100 @@
+.app-container {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.sidenav {
+  padding: 20px;
+}
+
+.content-container {
+  background-color: #dddddd;
+}
+
+.main-toolbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1050;
+}
+
+.secondary-toolbar {
+  background-color: #efefef;
+  margin-top: 64px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+#main {
+  text-align: left;
+
+  @media only screen and (max-width: 599px) {
+    padding: 2rem 1.5rem;
+  }
+
+  @media only screen and (min-width: 600px) {
+    margin: 0 auto;
+    padding: 3rem 0;
+    width: 30%;
+  }
+}
+
+
+.card {
+  margin-top: 2rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &__header__title {
+    font-weight: bold;
+  }
+
+  &__actions {
+    text-align: center;
+  }
+
+  &__image {
+    float: left;
+    width: 90px;
+    margin: 0 1rem 0 .1rem;
+  }
+
+  &__content {
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  &__author {
+    color: lightgray;
+    display: block;
+    text-align: right;
+  }
+}
+
+.avatar img {
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  // background-position: center;
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 40px;
+  width: 40px;
+}
+
+.source-name {
+  margin-left: 5px;
+}
+
+.list-item:hover {
+  cursor: pointer;
+  background-color: #3f51b5;
+  color: white;
+}
