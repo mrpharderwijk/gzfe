@@ -1,0 +1,10 @@
+.articles-list {
+  >* {
+    display: block;
+    margin-top: 2rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.avatar img {
+  border: 1px solid $color-gray-light;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 40px;
+  width: 40px;
+}
+
+.mat-card-header-text {
+  margin-left: 16px;
+  margin-right: 0px !important;
+}

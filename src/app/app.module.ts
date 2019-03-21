@@ -9,44 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 registerLocaleData(localeNl);
-
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatSidenavModule,
-  MatListModule,
-  MatSelectModule,
-  MatInputModule,
-} from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './shared/shared.module';
-
-const materialModules = [
-  MatButtonModule,
-  MatCardModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatSidenavModule,
-  MatListModule,
-  MatSelectModule,
-  MatInputModule,
-];
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    HttpClientModule,
-    SharedModule,
-    ...materialModules,
-  ],
+  imports: [AppRoutingModule, BrowserModule, BrowserAnimationsModule, HttpClientModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],
 })

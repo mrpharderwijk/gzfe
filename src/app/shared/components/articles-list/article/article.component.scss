@@ -1,0 +1,52 @@
+@import 'src/assets/styles/variables';
+
+.card {
+  padding: 2rem 1.5rem;
+
+  &__header {
+    margin-bottom: 1.5rem;
+
+    &__title {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 0px !important;
+      text-transform: uppercase;
+    }
+
+    &__subtitle {
+      font-size: .9rem;
+      margin: 0px !important;
+    }
+  }
+
+  &__content {
+    margin-bottom: 0px !important;
+
+    &__title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    &__image {
+      float: left;
+      width: 90px;
+      margin: 0 1rem 0 .1rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    &__author {
+      color: $color-gray;
+      display: block;
+      text-align: right;
+    }
+  }
+
+  &__actions {
+    margin: 1rem 0 0 0 !important;
+    padding: 0 !important;
+    text-align: right;
+  }
+}

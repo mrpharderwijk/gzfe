@@ -1,0 +1,17 @@
+.navigation__upper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1050;
+
+  &__logo {
+    flex: 1 1 auto;
+  }
+
+}
+
+.navigation__lower {
+  background-color: #efefef;
+  margin-top: 64px;
+}

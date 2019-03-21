@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsApiService } from './shared/services/news-api.service';
-import { Article } from './shared/models/article.model';
+import { Article } from './shared/models/article/article.model';
+import { NewsSource } from './shared/models/news-source.model';
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CommonReply } from './shared/models/common-reply.model';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +15,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class AppComponent implements OnInit {
   articles: Article[] = [];
   articlesCache: Article[];
-  sources: any[] = [];
-  currentSource = 'all';
+  sources: NewsSource[] = [];
+  defaultSource: NewsSource = {
+    id: 'all',
+    link: 'all',
+    logo: 'all',
+    name: 'Alles',
+  };
+  currentSource: NewsSource = this.defaultSource;
   currentCategory = 'algemeen';
+  articlesLoading = false;
 
   constructor(private newsApiService: NewsApiService, private sanitizer: DomSanitizer) {}
 
@@ -23,21 +32,7 @@ export class AppComponent implements OnInit {
     /**
      * Get all news headlines
      */
-    this.newsApiService
-      .getAllHeadlines()
-      .pipe(
-        catchError(error => {
-          console.error(error);
-          return EMPTY;
-        }),
-      )
-      .subscribe(response => {
-        this.currentSource = 'all';
-        this.articles = response.data.sort(function(a, b) {
-          return a.isoDate > b.isoDate ? -1 : a.isoDate < b.isoDate ? 1 : 0;
-        });
-        this.articlesCache = this.articles;
-      });
+    this.getArticlesBySource(this.defaultSource);
 
     /**
      * Get all news sources
@@ -45,6 +40,7 @@ export class AppComponent implements OnInit {
     this.newsApiService
       .getAllSources()
       .pipe(
+        // TODO: catch error
         catchError(error => {
           console.error(error);
           return EMPTY;
@@ -59,56 +55,59 @@ export class AppComponent implements OnInit {
    * Search news articles of a certain source
    * @param sourceName
    */
-  searchArticles(sourceName) {
-    if (sourceName === 'all') {
-      this.currentSource = 'all';
-      this.articles = this.articlesCache;
-      return;
-    }
+  getArticlesBySource(source: NewsSource) {
+    window.scrollTo(0, 0);
+    this.articlesLoading = true;
+    this.currentSource = source;
+    const category = this.currentCategory !== 'algemeen' ? this.currentCategory : null;
 
-    this.currentSource = sourceName;
-    this.articles = this.articlesCache.filter(article => article.source.name === sourceName);
+    this.newsApiService
+      .getAllHeadlines(category)
+      .pipe(
+        // TODO: catch error
+        catchError(error => {
+          this.articlesLoading = false;
+          console.error(error);
+          return EMPTY;
+        }),
+      )
+      .subscribe(response => this.processArticles(response));
   }
 
   /**
    * Search news articles of a certain category
    * @param categoryName
    */
-  searchCategory(categoryName: string) {
+  getArticlesByCategory(categoryName: string) {
+    window.scrollTo(0, 0);
+    this.articlesLoading = true;
     this.currentCategory = categoryName;
 
     this.newsApiService
-      .getAllHeadlinesByCategory(categoryName)
+      .getAllHeadlines(this.currentCategory)
       .pipe(
         catchError(error => {
+          this.articlesLoading = false;
           console.error(error);
           return EMPTY;
         }),
       )
-      .subscribe(response => {
-        this.articles = response.data.sort(function(a, b) {
-          return a.isoDate > b.isoDate ? -1 : a.isoDate < b.isoDate ? 1 : 0;
-        });
-        this.articlesCache = this.articles;
-      });
+      .subscribe(response => this.processArticles(response));
   }
 
-  /**
-   * Get the source logo by author
-   * @param author
-   */
-  getSourceLogo(author: string) {
-    author = author.toLowerCase();
+  processArticles(response: CommonReply<Article[]>) {
+    // Sort articles, newest first
+    const articles = response.data.sort(function(a, b) {
+      return a.isoDate > b.isoDate ? -1 : a.isoDate < b.isoDate ? 1 : 0;
+    });
 
-    if (author === 'all') {
-      return 'assets/images/all.png';
-    }
+    // Depending on the current selected source filter the articles
+    this.articles =
+      this.currentSource.id === 'all'
+        ? articles
+        : articles.filter(article => article.source.id === this.currentSource.id);
 
-    /**
-     * Nu.nl also publishes anp
-     */
-    const logo = author.includes('anp') ? 'anp' : this.sources.find(source => author.includes(source.name)).logo;
-
-    return logo ? `assets/images/${logo}.png` : null;
+    // Remove loading state
+    this.articlesLoading = false;
   }
 }

@@ -1,0 +1,21 @@
+<mat-card class="card">
+  <mat-card-header class="card__header">
+    <div mat-card-avatar class="avatar">
+      <img src="assets/images/{{ article.source.logo }}.png">
+    </div>
+    <mat-card-title class="card__header__title">{{ article.author }}</mat-card-title>
+    <mat-card-subtitle class="card__header__subtitle">{{ article.isoDate | dateAgo }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="card__content">
+    <mat-card-title class="card__content__title" [innerHtml]="article.title"></mat-card-title>
+    <img *ngIf="article.image.url" mat-card-image class="card__content__image" [src]="article.image.url" alt="">
+    <p [innerHtml]="article.contentSnippet"></p>
+  </mat-card-content>
+  <mat-card-actions class="card__actions">
+    <a mat-flat-button color="primary" [href]="article.link" target="_blank">
+      Lees meer
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+  </mat-card-actions>
+</mat-card>
