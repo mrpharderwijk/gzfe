@@ -15,11 +15,11 @@ export class NewsApiService {
     return this.http.get<CommonReply<any>>(`${environment.domain.gzbe.BASE}${environment.serviceUrls.news.sources}`);
   }
 
-  getAllHeadlines(categoryName: string = null): Observable<CommonReply<Article[]>> {
+  getAllHeadlines(sourceId: string = null): Observable<CommonReply<Article[]>> {
     const url =
       `${environment.domain.gzbe.BASE}` +
-      `${environment.serviceUrls.news.headlines}` +
-      `${categoryName ? `/${categoryName}` : ''}`;
+      `${environment.serviceUrls.news.sources}` +
+      `${sourceId ? `/${sourceId}` : ''}/headlines`;
 
     return this.http.get<CommonReply<Article[]>>(url);
   }

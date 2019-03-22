@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NewsSource } from '../../models/news-source.model';
 
 @Component({
@@ -8,10 +8,27 @@ import { NewsSource } from '../../models/news-source.model';
 })
 export class NavigationComponent implements OnInit {
   @Input() currentCategory: string;
-  @Input() currentSource: NewsSource;
+  @Input() sources: NewsSource[];
   @Input() sidenav: any;
+
+  @Output() sourceUpdated: EventEmitter<NewsSource> = new EventEmitter();
+
+  defaultSource: NewsSource = {
+    id: 'all',
+    link: 'all',
+    logo: 'all',
+    name: 'Alles',
+  };
+  currentSource: NewsSource;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentSource = this.defaultSource;
+  }
+
+  setCurrentSource(source: NewsSource) {
+    this.currentSource = source;
+    this.sourceUpdated.emit(source);
+  }
 }

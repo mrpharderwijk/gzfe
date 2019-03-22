@@ -1,0 +1,9 @@
+.mat-menu-item {
+  display: flex !important;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  .avatar {
+    margin-right: .8rem;
+  }
+}

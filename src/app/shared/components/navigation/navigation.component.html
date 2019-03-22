@@ -1,20 +1,42 @@
 <mat-toolbar class="navigation__upper mat-elevation-z5" color="primary">
-  <button mat-button (click)="sidenav.open()">
+  <!-- <button mat-button (click)="sidenav.open()">
     <mat-icon>menu</mat-icon>
-  </button>
+  </button> -->
   <span class="navigation__upper__logo">Gazetta</span>
-  <button mat-button [matMenuTriggerFor]="appMenu">
+  <!-- <button mat-button [matMenuTriggerFor]="appMenu">
     <mat-icon>settings</mat-icon>
   </button>
   <mat-menu #appMenu="matMenu">
     <button mat-menu-item>Settings</button>
     <button mat-menu-item>Help</button>
-  </mat-menu>
+  </mat-menu> -->
 </mat-toolbar>
 <mat-toolbar class="navigation__lower">
-  Nieuwsbron:
-  <div mat-card-avatar class="avatar" *ngIf="currentSource">
-    <img src="assets/images/{{ currentSource.logo || 'all' }}.png">
+  <div class="navigation__lower__news-source">
+    <button mat-stroked-button color="primary" [matMenuTriggerFor]="sourceMenu">
+      <div mat-card-avatar class="avatar">
+        <img src="assets/images/{{ currentSource.logo }}.png">
+      </div>
+      <span>{{ currentSource.name }}</span>
+    </button>
+
+    <mat-menu #sourceMenu="matMenu">
+      <button mat-menu-item class="mat-menu-item" (click)="setCurrentSource(defaultSource)">
+        <div mat-card-avatar class="avatar">
+          <img src="assets/images/{{ defaultSource.logo }}.png">
+        </div>
+        <span>{{ defaultSource.name }}</span>
+      </button>
+      <button mat-menu-item class="mat-menu-item" *ngFor="let source of sources" (click)="setCurrentSource(source)">
+        <div mat-card-avatar class="avatar">
+          <img src="assets/images/{{ source.logo }}.png">
+        </div>
+        <span>{{ source.name }}</span>
+      </button>
+    </mat-menu>
   </div>
-  Categorie: {{ currentCategory }}
+  <!-- <div class="navigation__lower__category">
+    <span>Categorie:</span>
+    <span>{{ currentCategory }}</span>
+  </div> -->
 </mat-toolbar>

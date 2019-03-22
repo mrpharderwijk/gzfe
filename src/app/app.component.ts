@@ -22,20 +22,22 @@ export class AppComponent implements OnInit {
     logo: 'all',
     name: 'Alles',
   };
-  currentSource: NewsSource = this.defaultSource;
+  currentSource: NewsSource;
   currentCategory = 'algemeen';
   articlesLoading = false;
 
   constructor(private newsApiService: NewsApiService, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
+    this.currentSource = this.defaultSource;
+
     /**
      * Get all news headlines
      */
-    this.getArticlesBySource(this.defaultSource);
+    this.getArticlesBySource(this.currentSource);
 
     /**
-     * Get all news sources
+     * Get all news sources for use in the menu
      */
     this.newsApiService
       .getAllSources()
@@ -58,11 +60,12 @@ export class AppComponent implements OnInit {
   getArticlesBySource(source: NewsSource) {
     window.scrollTo(0, 0);
     this.articlesLoading = true;
-    this.currentSource = source;
-    const category = this.currentCategory !== 'algemeen' ? this.currentCategory : null;
+
+    // only send source id when a source is set (all = null)
+    const requestSource = source.id === 'all' ? null : source.id;
 
     this.newsApiService
-      .getAllHeadlines(category)
+      .getAllHeadlines(requestSource)
       .pipe(
         // TODO: catch error
         catchError(error => {
@@ -95,17 +98,15 @@ export class AppComponent implements OnInit {
       .subscribe(response => this.processArticles(response));
   }
 
+  /**
+   * Processes the response by sorting the articles and disabling the loader
+   * @param response
+   */
   processArticles(response: CommonReply<Article[]>) {
     // Sort articles, newest first
-    const articles = response.data.sort(function(a, b) {
+    this.articles = response.data.sort(function(a, b) {
       return a.isoDate > b.isoDate ? -1 : a.isoDate < b.isoDate ? 1 : 0;
     });
-
-    // Depending on the current selected source filter the articles
-    this.articles =
-      this.currentSource.id === 'all'
-        ? articles
-        : articles.filter(article => article.source.id === this.currentSource.id);
 
     // Remove loading state
     this.articlesLoading = false;

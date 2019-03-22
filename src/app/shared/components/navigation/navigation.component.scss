@@ -13,5 +13,23 @@
 
 .navigation__lower {
   background-color: #efefef;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
   margin-top: 64px;
+
+  &__news-source,
+  &__category {
+    flex: 0 1 auto;
+  }
+
+  /deep/ .mat-button-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    .avatar {
+      margin-right: .8rem;
+    }
+  }
 }

@@ -1,36 +1,8 @@
 <mat-sidenav-container class="app-container">
-  <mat-sidenav #sidenav fixedInViewport="true" class="sidenav" mode="push">
-    <mat-list class="sidenav__list" *ngIf="sources && sources.length">
-      <mat-list-item class="sidenav__list__item">
-        <mat-form-field>
-          <mat-label>Categorie</mat-label>
-          <mat-select [(value)]="currentCategory">
-            <mat-option value="algemeen" (click)="getArticlesByCategory('general'); sidenav.close()">Algemeen
-            </mat-option>
-            <mat-option value="sport" (click)="getArticlesByCategory('sport'); sidenav.close()">Sport</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-list-item>
-
-      <h2 mat-subheader>Nieuwsbronnen</h2>
-      <mat-list-item class="sidenav__list__item" (click)="getArticlesBySource(defaultSource); sidenav.close();">
-        <div mat-card-avatar class="avatar">
-          <img src="assets/images/{{ defaultSource.logo }}.png">
-        </div>
-        <span class="sidenav__list__item__label">{{ defaultSource.name }}</span>
-      </mat-list-item>
-      <mat-list-item class="sidenav__list__item" *ngFor="let source of sources"
-        (click)="getArticlesBySource(source); sidenav.close();">
-        <div mat-card-avatar class="avatar">
-          <img src="assets/images/{{ source.logo }}.png">
-        </div>
-        <span class="sidenav__list__item__label">{{ source.name }}</span>
-      </mat-list-item>
-    </mat-list>
-  </mat-sidenav>
+  <mat-sidenav #sidenav fixedInViewport="true" class="sidenav" mode="push"></mat-sidenav>
 
   <mat-sidenav-content class="content-container">
-    <gz-navigation [sidenav]="sidenav" [currentCategory]="currentCategory" [currentSource]="currentSource">
+    <gz-navigation [sidenav]="sidenav" [sources]="sources" (sourceUpdated)="getArticlesBySource($event)">
     </gz-navigation>
 
     <main id="main" class="main" role="main">
