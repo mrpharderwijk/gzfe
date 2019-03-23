@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NewsApiService } from './news-api.service';
+import { NavigationService } from './navigation.service';
 
-describe('NewsApiService', () => {
+describe('NavigationService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: NewsApiService = TestBed.get(NewsApiService);
+    const service: NavigationService = TestBed.get(NavigationService);
     expect(service).toBeTruthy();
   });
 });

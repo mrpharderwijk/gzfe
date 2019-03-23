@@ -10,3 +10,16 @@ $font-default: "Helvetica Neue",
 Helvetica,
 Arial,
 sans-serif;
+
+// Breakpoints
+$small: 600px;
+$phone-upper-boundary: $small;
+
+$medium: 900px;
+$tablet-portrait-upper-boundary: $medium;
+
+$large: 1200px;
+$tablet-landscape-upper-boundary: $large;
+
+$xlarge: 1800px;
+$desktop-upper-boundary: $xlarge;

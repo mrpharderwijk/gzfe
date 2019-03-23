@@ -1,12 +1,15 @@
 <mat-sidenav-container class="app-container">
-  <mat-sidenav #sidenav fixedInViewport="true" class="sidenav" mode="push"></mat-sidenav>
+  <mat-sidenav #sidenav fixedInViewport="true" class="app-container__sidenav" mode="push">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">Nieuws</a>
+      <a mat-list-item routerLink="/alarmeringen" (click)="sidenav.close()">Alarmeringen</a>
+    </mat-nav-list>
+  </mat-sidenav>
 
-  <mat-sidenav-content class="content-container">
-    <gz-navigation [sidenav]="sidenav" [sources]="sources" (sourceUpdated)="getArticlesBySource($event)">
-    </gz-navigation>
-
+  <mat-sidenav-content class="app-container__content">
+    <gz-navigation [sidenav]="sidenav"></gz-navigation>
     <main id="main" class="main" role="main">
-      <gz-articles-list [articles]="articles" [loading]="articlesLoading"></gz-articles-list>
+      <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

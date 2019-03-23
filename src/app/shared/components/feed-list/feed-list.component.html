@@ -1,0 +1,14 @@
+<div class="feed-list" *ngIf="loading && !items">
+  <gz-feed-loader></gz-feed-loader>
+  <gz-feed-loader></gz-feed-loader>
+  <gz-feed-loader></gz-feed-loader>
+  <gz-feed-loader></gz-feed-loader>
+</div>
+
+<div class="feed-list" *ngIf="!loading && items">
+  <gz-feed-list-item *ngFor="let feedItem of items" [item]="feedItem" [type]="type"></gz-feed-list-item>
+</div>
+
+<div class="feed-list" *ngIf="!loading && !items">
+  Geen artikelen gevonden
+</div>

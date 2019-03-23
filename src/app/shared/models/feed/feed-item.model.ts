@@ -1,6 +1,6 @@
-import { ArticleImage } from './article-image.model';
+import { FeedImage } from './feed-image.model';
 
-export interface Article {
+export interface FeedItem {
   source: {
     id: string;
     name: string;
@@ -10,7 +10,7 @@ export interface Article {
   categories: string[] | any;
   content: string;
   contentSnippet: string;
-  image: ArticleImage;
+  image: FeedImage;
   isoDate: string;
   link: string;
   title: string;

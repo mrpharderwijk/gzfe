@@ -19,8 +19,10 @@ export const environment = {
       profile: '/v1/profile',
     },
     news: {
-      sources: '/v1/sources',
-      headlines: '/v1/sources/headlines',
+      url: '/v1/news',
+    },
+    sources: {
+      url: '/v1/sources',
     },
   },
 };

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { NewsApiService } from './services/news-api.service';
+import { FeedsService } from './services/feeds.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 /**
@@ -23,9 +23,9 @@ import {
   MatProgressSpinnerModule,
 } from '@angular/material';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { ArticlesListComponent } from './components/articles-list/articles-list.component';
-import { ArticleLoaderComponent } from './components/articles-list/article-loader/article-loader.component';
-import { ArticleComponent } from './components/articles-list/article/article.component';
+import { FeedListComponent } from './components/feed-list/feed-list.component';
+import { FeedListItemComponent } from './components/feed-list/feed-list-item/feed-list-item.component';
+import { FeedLoaderComponent } from './components/feed-list/feed-loader/feed-loader.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 const materialModules = [
@@ -51,15 +51,15 @@ const materialModules = [
     RouterModule,
     ...materialModules,
   ],
-  declarations: [ArticleComponent, ArticleLoaderComponent, ArticlesListComponent, NavigationComponent, DateAgoPipe],
+  declarations: [FeedListComponent, FeedListItemComponent, FeedLoaderComponent, NavigationComponent, DateAgoPipe],
   exports: [
-    ArticleComponent,
-    ArticleLoaderComponent,
-    ArticlesListComponent,
+    FeedListComponent,
+    FeedListItemComponent,
+    FeedLoaderComponent,
     NavigationComponent,
     DateAgoPipe,
     ...materialModules,
   ],
-  providers: [NewsApiService],
+  providers: [FeedsService],
 })
 export class SharedModule {}
