@@ -18,8 +18,8 @@ export const environment = {
       signOut: '/v1/sign-out',
       profile: '/v1/profile',
     },
-    news: {
-      url: '/v1/news',
+    feeds: {
+      url: '/v1/feeds',
     },
     sources: {
       url: '/v1/sources',
