@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FeedsService } from './services/feeds.service';
+import { NewsFeedService } from './services/news-feed.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 /**
@@ -60,6 +60,6 @@ const materialModules = [
     DateAgoPipe,
     ...materialModules,
   ],
-  providers: [FeedsService],
+  providers: [NewsFeedService],
 })
 export class SharedModule {}

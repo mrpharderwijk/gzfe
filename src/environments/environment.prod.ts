@@ -18,11 +18,13 @@ export const environment = {
       signOut: '/v1/sign-out',
       profile: '/v1/profile',
     },
-    feeds: {
-      url: '/v1/feeds',
+    news: {
+      url: '/v1/news',
+      sources: '/v1/news/sources',
     },
-    sources: {
-      url: '/v1/sources',
+    emergencies: {
+      url: '/v1/emergencies',
+      regions: '/v1/emergencies/regions',
     },
   },
 };

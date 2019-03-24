@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { CommonReply } from '../shared/models/common-reply.model';
-import { FeedsService } from '../shared/services/feeds.service';
+import { NewsFeedService } from '../shared/services/news-feed.service';
 import { FeedItem } from '../shared/models/feed/feed-item.model';
 import { NewsSource } from '../shared/models/news-source.model';
 
@@ -23,7 +23,7 @@ export class NewsComponent implements OnInit {
   };
   sources: NewsSource[] = [];
 
-  constructor(private feedsService: FeedsService) {}
+  constructor(private newsFeedService: NewsFeedService) {}
 
   ngOnInit() {
     this.currentSource = this.defaultSource;
@@ -36,8 +36,8 @@ export class NewsComponent implements OnInit {
     /**
      * Get all news sources for use in the menu
      */
-    this.feedsService
-      .getAllSources('news')
+    this.newsFeedService
+      .getAllNewsSources('news')
       .pipe(
         // TODO: catch error
         catchError(error => {
@@ -62,8 +62,8 @@ export class NewsComponent implements OnInit {
     // only send source id when a source is set (all = null)
     const requestSource = source.id === 'all' ? 'all' : source.id;
 
-    this.feedsService
-      .getFeedContent('news', requestSource)
+    this.newsFeedService
+      .getAllNewsArticles('news', requestSource)
       .pipe(
         // TODO: catch error
         catchError(error => {

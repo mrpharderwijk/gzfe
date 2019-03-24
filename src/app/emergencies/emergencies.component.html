@@ -1,31 +1,14 @@
 <mat-toolbar class="navigation__lower">
-  <!-- <div class="navigation__lower__news-source">
-    <button mat-button color="primary" [matMenuTriggerFor]="sourceMenu">
-      <div class="avatar-item">
-        <span class="avatar-item__avatar">
-          <img class="avatar" src="assets/images/{{ currentSource.logo }}.png">
-        </span>
-        <span class="avatar-item__name">{{ currentSource.name }}</span>
-      </div>
+  <div class="navigation__lower__news-source">
+    <button mat-button color="primary" [matMenuTriggerFor]="regionMenu">
+      {{ currentRegion.name }}
     </button>
-    <mat-menu #sourceMenu="matMenu">
-      <button mat-menu-item class="mat-menu-item" (click)="getItemsBySource(defaultSource)">
-        <div class="avatar-item">
-          <span class="avatar-item__avatar">
-            <img class="avatar" src="assets/images/{{ defaultSource.logo }}.png">
-          </span>
-          <span class="avatar-item__name">{{ defaultSource.name }}</span>
-        </div>
-      </button>
-      <button mat-menu-item class="mat-menu-item" *ngFor="let source of sources" (click)="getItemsBySource(source)">
-        <div class="avatar-item">
-          <span class="avatar-item__avatar">
-            <img class="avatar" src="assets/images/{{ source.logo }}.png">
-          </span>
-          <span class="avatar-item__name">{{ source.name }}</span>
-        </div>
+    <mat-menu #regionMenu="matMenu">
+      <button mat-menu-item class="mat-menu-item" *ngFor="let region of regions" (click)="getItemsByRegion(region)">
+        {{ region.name }}
       </button>
     </mat-menu>
-  </div> -->
+  </div>
 </mat-toolbar>
+
 <gz-feed-list [items]="feedItems" [loading]="itemsLoading" [type]="'emergencies'"></gz-feed-list>

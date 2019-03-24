@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { CommonReply } from '../shared/models/common-reply.model';
-import { FeedsService } from '../shared/services/feeds.service';
+import { EmergencyFeedService } from '../shared/services/emergency-feed.service';
 import { FeedItem } from '../shared/models/feed/feed-item.model';
 import { NewsSource } from '../shared/models/news-source.model';
 
@@ -14,56 +14,54 @@ import { NewsSource } from '../shared/models/news-source.model';
 export class EmergenciesComponent implements OnInit {
   feedItems: FeedItem[] = [];
   itemsLoading = false;
-  currentSource: NewsSource;
-  defaultSource: NewsSource = {
-    id: 'all',
-    link: 'all',
-    logo: 'all',
-    name: 'Alles',
+  currentRegion: { id: string; name: string };
+  defaultRegion: { id: string; name: string } = {
+    id: 'gooi-en-vechtstreek',
+    name: 'Gooi en Vechtstreek',
   };
-  sources: NewsSource[] = [];
+  regions: { id: string; name: string }[] = [];
 
-  constructor(private feedsService: FeedsService) {}
+  constructor(private emergencyFeedService: EmergencyFeedService) {}
 
   ngOnInit() {
-    this.currentSource = this.defaultSource;
+    this.currentRegion = this.defaultRegion;
 
     /**
      * Get all news
      */
-    this.getItemsBySource(this.currentSource);
+    this.getItemsByRegion(this.currentRegion);
 
     /**
      * Get all news sources for use in the menu
      */
-    // this.feedsService
-    //   .getAllSources()
-    //   .pipe(
-    //     // TODO: catch error
-    //     catchError(error => {
-    //       console.error(error);
-    //       return EMPTY;
-    //     }),
-    //   )
-    //   .subscribe(response => {
-    //     this.sources = response.data;
-    //   });
+    this.emergencyFeedService
+      .getAllRegions()
+      .pipe(
+        // TODO: catch error
+        catchError(error => {
+          console.error(error);
+          return EMPTY;
+        }),
+      )
+      .subscribe(response => {
+        this.regions = response.data;
+      });
   }
 
   /**
-   * Search emergency articles of a certain source
+   * Search emergency articles of a certain region
    * @param sourceName
    */
-  getItemsBySource(source: NewsSource) {
+  getItemsByRegion(region: { id: string; name: string }) {
     window.scrollTo(0, 0);
     this.itemsLoading = true;
-    this.currentSource = source;
+    this.currentRegion = region;
 
     // only send source id when a source is set (all = null)
-    const requestSource = source.id === 'all' ? null : source.id;
+    // const requestSource = region.id === 'all' ? null : source.id;
 
-    this.feedsService
-      .getFeedContent('emergencies')
+    this.emergencyFeedService
+      .getAllEmergenciesByRegion(region.id)
       .pipe(
         // TODO: catch error
         catchError(error => {
