@@ -11,11 +11,12 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { NewsComponent } from './news/news.component';
 import { EmergenciesComponent } from './emergencies/emergencies.component';
+import { TechComponent } from './tech/tech.component';
 
 registerLocaleData(localeNl);
 
 @NgModule({
-  declarations: [AppComponent, NewsComponent, EmergenciesComponent],
+  declarations: [AppComponent, NewsComponent, EmergenciesComponent, TechComponent],
   imports: [AppRoutingModule, BrowserModule, BrowserAnimationsModule, HttpClientModule, RouterModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],

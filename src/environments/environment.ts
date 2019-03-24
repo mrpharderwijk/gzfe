@@ -30,6 +30,10 @@ export const environment = {
       url: '/v1/emergencies',
       regions: '/v1/emergencies/regions',
     },
+    tech: {
+      url: '/v1/tech',
+      sources: '/v1/tech/sources',
+    },
   },
 };
 

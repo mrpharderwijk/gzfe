@@ -1,8 +1,9 @@
 <mat-sidenav-container class="app-container">
   <mat-sidenav #sidenav fixedInViewport="true" class="app-container__sidenav" mode="push">
     <mat-nav-list>
-      <a mat-list-item routerLink="/" (click)="sidenav.close()">Nieuws</a>
       <a mat-list-item routerLink="/alarmeringen" (click)="sidenav.close()">Alarmeringen</a>
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">Nieuws</a>
+      <a mat-list-item routerLink="/tech" (click)="sidenav.close()">Technologie</a>
     </mat-nav-list>
   </mat-sidenav>
 

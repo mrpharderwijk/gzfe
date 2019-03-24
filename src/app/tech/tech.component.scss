@@ -1,0 +1,17 @@
+.navigation__lower {
+  background-color: #efefef;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  margin: 3rem 0 2rem 0;
+
+  &__news-source,
+  &__category {
+    flex: 0 1 auto;
+  }
+
+  button {
+    height: 48px;
+    line-height: 0px;
+  }
+}

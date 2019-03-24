@@ -27,6 +27,8 @@ import { FeedListComponent } from './components/feed-list/feed-list.component';
 import { FeedListItemComponent } from './components/feed-list/feed-list-item/feed-list-item.component';
 import { FeedLoaderComponent } from './components/feed-list/feed-loader/feed-loader.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { TechFeedService } from './services/tech-feed.service';
+import { EmergencyFeedService } from './services/emergency-feed.service';
 
 const materialModules = [
   MatButtonModule,
@@ -60,6 +62,6 @@ const materialModules = [
     DateAgoPipe,
     ...materialModules,
   ],
-  providers: [NewsFeedService],
+  providers: [NewsFeedService, TechFeedService, EmergencyFeedService],
 })
 export class SharedModule {}

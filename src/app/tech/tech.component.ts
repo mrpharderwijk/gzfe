@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { FeedItem } from '../shared/models/feed/feed-item.model';
+import { NewsSource } from '../shared/models/news-source.model';
+import { TechFeedService } from '../shared/services/tech-feed.service';
 import { catchError } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { CommonReply } from '../shared/models/common-reply.model';
-import { NewsFeedService } from '../shared/services/news-feed.service';
-import { FeedItem } from '../shared/models/feed/feed-item.model';
-import { NewsSource } from '../shared/models/news-source.model';
 
 @Component({
-  selector: 'gz-news',
-  templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss'],
+  selector: 'gz-tech',
+  templateUrl: './tech.component.html',
+  styleUrls: ['./tech.component.scss'],
 })
-export class NewsComponent implements OnInit {
+export class TechComponent implements OnInit {
   feedItems: FeedItem[];
   itemsLoading = false;
   currentSource: NewsSource;
@@ -23,7 +23,7 @@ export class NewsComponent implements OnInit {
   };
   sources: NewsSource[] = [];
 
-  constructor(private newsFeedService: NewsFeedService) {}
+  constructor(private techFeedService: TechFeedService) {}
 
   ngOnInit() {
     this.currentSource = this.defaultSource;
@@ -36,8 +36,8 @@ export class NewsComponent implements OnInit {
     /**
      * Get all news sources for use in the menu
      */
-    this.newsFeedService
-      .getAllNewsSources()
+    this.techFeedService
+      .getAllTechSources()
       .pipe(
         // TODO: catch error
         catchError(error => {
@@ -62,8 +62,8 @@ export class NewsComponent implements OnInit {
     // only send source id when a source is set (all = null)
     const requestSource = source.id === 'all' ? 'all' : source.id;
 
-    this.newsFeedService
-      .getAllNewsArticles(requestSource)
+    this.techFeedService
+      .getAllTechArticles(requestSource)
       .pipe(
         // TODO: catch error
         catchError(error => {
