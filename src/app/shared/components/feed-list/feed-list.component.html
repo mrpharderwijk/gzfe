@@ -1,9 +1,4 @@
-<div class="feed-list" *ngIf="loading">
-  <gz-feed-loader></gz-feed-loader>
-  <gz-feed-loader></gz-feed-loader>
-  <gz-feed-loader></gz-feed-loader>
-  <gz-feed-loader></gz-feed-loader>
-</div>
+<gz-list-loader *ngIf="loading"></gz-list-loader>
 
 <div class="feed-list" *ngIf="!loading && items">
   <gz-feed-list-item *ngFor="let feedItem of items" [item]="feedItem" [type]="type"></gz-feed-list-item>

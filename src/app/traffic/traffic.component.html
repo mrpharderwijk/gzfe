@@ -1,0 +1,27 @@
+<mat-toolbar class="navigation__lower" *ngIf="trafficLoading"></mat-toolbar>
+
+<gz-list-loader *ngIf="trafficLoading"></gz-list-loader>
+
+<mat-tab-group *ngIf="!trafficLoading && traffic" mat-align-tabs="center" animationDuration="0ms">
+  <mat-tab label="Files" *ngIf="traffic?.trafficJams?.total">
+    <ng-template mat-tab-label>
+      <span [matBadge]="traffic.trafficJams.total" matBadgeOverlap="false">Files</span>
+    </ng-template>
+    <gz-traffic-list [items]="traffic.trafficJams.roadEntries" [loading]="trafficLoading" [type]="'trafficJams'">
+    </gz-traffic-list>
+  </mat-tab>
+  <mat-tab label="Werkzaamheden" *ngIf="traffic?.roadWorks?.total">
+    <ng-template mat-tab-label>
+      <span [matBadge]="traffic.roadWorks.total" matBadgeOverlap="false">Wegwerkzaamheden</span>
+    </ng-template>
+    <gz-traffic-list [items]="traffic.roadWorks.roadEntries" [loading]="trafficLoading" [type]="'roadWorks'">
+    </gz-traffic-list>
+  </mat-tab>
+  <mat-tab label="Flitsers" *ngIf="traffic?.radars?.total">
+    <ng-template mat-tab-label>
+      <span [matBadge]="traffic.radars.total" matBadgeOverlap="false">Flitsers</span>
+    </ng-template>
+    <gz-traffic-list [items]="traffic.radars.roadEntries" [loading]="trafficLoading" [type]="'radars'">
+    </gz-traffic-list>
+  </mat-tab>
+</mat-tab-group>

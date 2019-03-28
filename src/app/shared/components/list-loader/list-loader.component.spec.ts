@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FeedLoaderComponent } from './feed-loader.component';
+import { ListLoaderComponent } from './list-loader.component';
 
-describe('FeedLoaderComponent', () => {
-  let component: FeedLoaderComponent;
-  let fixture: ComponentFixture<FeedLoaderComponent>;
+describe('ListLoaderComponent', () => {
+  let component: ListLoaderComponent;
+  let fixture: ComponentFixture<ListLoaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FeedLoaderComponent],
+      declarations: [ListLoaderComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FeedLoaderComponent);
+    fixture = TestBed.createComponent(ListLoaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

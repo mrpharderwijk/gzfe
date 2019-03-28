@@ -30,5 +30,8 @@ export const environment = {
       url: '/v1/tech',
       sources: '/v1/tech/sources',
     },
+    traffic: {
+      url: '/v1/traffic',
+    },
   },
 };

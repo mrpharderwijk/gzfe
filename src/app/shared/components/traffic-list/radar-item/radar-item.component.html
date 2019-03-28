@@ -1,0 +1,28 @@
+<div class="road-entry">
+  <mat-accordion>
+    <mat-expansion-panel class="road-entry__card">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div class="road-entry__title" [ngClass]="{
+          'road-entry__title--a': item.roadType === 'aWegen',
+          'road-entry__title--n': item.roadType === 'nWegen'
+        }">
+            {{ item.road | spaceAfterChar }}</div>
+        </mat-panel-title>
+        <mat-panel-description>
+          <div class="road-entry__description">{{ getTotalAmount() }}</div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ul class="list-group list-group--road-events">
+        <li class="list-group-item list-group-item--radar" *ngFor="let radar of item.radars">
+          <div class="event-item">
+            <h4 class="event-item__title">{{ radar.segStart }} - {{ radar.segEnd }}</h4>
+            <div class="event-item__info">
+              <p class="event-item__info__description">{{ radar.description }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

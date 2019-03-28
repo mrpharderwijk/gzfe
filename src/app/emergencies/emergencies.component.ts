@@ -24,6 +24,7 @@ export class EmergenciesComponent implements OnInit {
   constructor(private emergencyFeedService: EmergencyFeedService) {}
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.currentRegion = this.defaultRegion;
 
     /**

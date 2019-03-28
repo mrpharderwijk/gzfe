@@ -21,14 +21,24 @@ import {
   MatSelectModule,
   MatInputModule,
   MatProgressSpinnerModule,
+  MatTabsModule,
+  MatBadgeModule,
+  MatExpansionModule,
 } from '@angular/material';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FeedListComponent } from './components/feed-list/feed-list.component';
 import { FeedListItemComponent } from './components/feed-list/feed-list-item/feed-list-item.component';
-import { FeedLoaderComponent } from './components/feed-list/feed-loader/feed-loader.component';
+import { ListLoaderComponent } from './components/list-loader/list-loader.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { TechFeedService } from './services/tech-feed.service';
 import { EmergencyFeedService } from './services/emergency-feed.service';
+import { TrafficListComponent } from './components/traffic-list/traffic-list.component';
+import { SecondsToMinutesPipe } from './pipes/seconds-to-minutes.pipe';
+import { MetresToKmPipe } from './pipes/metres-to-km.pipe';
+import { SpaceAfterCharPipe } from './pipes/space-after-char.pipe';
+import { TrafficJamItemComponent } from './components/traffic-list/traffic-jam-item/traffic-jam-item.component';
+import { RadarItemComponent } from './components/traffic-list/radar-item/radar-item.component';
+import { RoadWorkItemComponent } from './components/traffic-list/road-work-item/road-work-item.component';
 
 const materialModules = [
   MatButtonModule,
@@ -41,6 +51,9 @@ const materialModules = [
   MatSelectModule,
   MatInputModule,
   MatProgressSpinnerModule,
+  MatTabsModule,
+  MatBadgeModule,
+  MatExpansionModule,
 ];
 
 @NgModule({
@@ -53,12 +66,26 @@ const materialModules = [
     RouterModule,
     ...materialModules,
   ],
-  declarations: [FeedListComponent, FeedListItemComponent, FeedLoaderComponent, NavigationComponent, DateAgoPipe],
+  declarations: [
+    FeedListComponent,
+    FeedListItemComponent,
+    ListLoaderComponent,
+    NavigationComponent,
+    DateAgoPipe,
+    TrafficListComponent,
+    SecondsToMinutesPipe,
+    MetresToKmPipe,
+    SpaceAfterCharPipe,
+    TrafficJamItemComponent,
+    RadarItemComponent,
+    RoadWorkItemComponent,
+  ],
   exports: [
     FeedListComponent,
     FeedListItemComponent,
-    FeedLoaderComponent,
+    ListLoaderComponent,
     NavigationComponent,
+    TrafficListComponent,
     DateAgoPipe,
     ...materialModules,
   ],

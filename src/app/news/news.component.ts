@@ -26,6 +26,7 @@ export class NewsComponent implements OnInit {
   constructor(private newsFeedService: NewsFeedService) {}
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.currentSource = this.defaultSource;
 
     /**

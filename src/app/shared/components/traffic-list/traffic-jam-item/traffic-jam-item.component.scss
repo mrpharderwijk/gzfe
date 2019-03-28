@@ -1,0 +1,13 @@
+@import 'assets/styles/_variables';
+
+/deep/ .mat-expansion-panel-header {
+  padding: 1rem 1.5rem !important;
+}
+
+/deep/ .mat-expansion-panel-header-description {
+  align-items: center;
+}
+
+/deep/ .mat-expansion-indicator:after {
+  color: $color-white;
+}

@@ -1,0 +1,11 @@
+<div class="traffic-list" *ngIf="!loading && items">
+  <ng-container *ngFor="let trafficItem of items" [ngSwitch]="type">
+    <gz-radar-item *ngSwitchCase="'radars'" [item]="trafficItem"></gz-radar-item>
+    <gz-traffic-jam-item *ngSwitchCase="'trafficJams'" [item]="trafficItem"></gz-traffic-jam-item>
+    <gz-road-work-item *ngSwitchCase="'roadWorks'" [item]="trafficItem"></gz-road-work-item>
+  </ng-container>
+</div>
+
+<div class="traffic-list" *ngIf="!loading && !items">
+  Geen meldingen gevonden...
+</div>

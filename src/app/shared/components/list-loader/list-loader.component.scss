@@ -1,3 +1,5 @@
+@import 'assets/styles/variables';
+
 @keyframes placeHolderShimmer {
   0% {
     background-position: -468px 0
@@ -8,8 +10,19 @@
   }
 }
 
-.feed-loader {
-  background: #fff;
+.list-loader {
+  >* {
+    display: block;
+    margin-top: 2rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.list-loader__item {
+  background: $color-white;
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 3px;
@@ -30,7 +43,7 @@
     &__content {
       &__title {
         height: 1.5rem;
-        border-bottom: 1rem solid #fff;
+        border-bottom: 1rem solid $color-white;
       }
 
       &__image-wrap {
@@ -39,8 +52,8 @@
         &__image {
           width: 90px;
           height: 90px;
-          border-right: 1rem solid #fff;
-          border-bottom: 1rem solid #fff;
+          border-right: 1rem solid $color-white;
+          border-bottom: 1rem solid $color-white;
         }
 
         &__right {
@@ -48,14 +61,14 @@
 
           .content-line {
             height: .86rem;
-            border-bottom: .8rem solid #fff;
+            border-bottom: .8rem solid $color-white;
           }
         }
       }
 
       >.content-line {
         height: .86rem;
-        border-bottom: .8rem solid #fff;
+        border-bottom: .8rem solid $color-white;
         width: 100%;
       }
     }
