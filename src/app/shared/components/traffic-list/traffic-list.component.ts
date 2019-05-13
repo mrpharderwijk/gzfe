@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TrafficEvent } from '../../models/traffic/traffic-event.model';
 
 @Component({
   selector: 'gz-traffic-list',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./traffic-list.component.scss'],
 })
 export class TrafficListComponent implements OnInit {
-  @Input() items: any[];
+  @Input() items: TrafficEvent[];
   @Input() loading: boolean;
   @Input() type: string;
 
