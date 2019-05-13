@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ObjectHelper } from '../../../helpers/object.helpter';
-import { TrafficRoadWorksEntry } from '../../../models/traffic/traffic-road-works-entry.model';
+import { TrafficEventEntry } from '../../../models/traffic/traffic-event-entry.model';
 
 @Component({
   selector: 'gz-road-work-item',
@@ -8,7 +8,7 @@ import { TrafficRoadWorksEntry } from '../../../models/traffic/traffic-road-work
   styleUrls: ['./road-work-item.component.scss'],
 })
 export class RoadWorkItemComponent implements OnInit {
-  @Input() item: TrafficRoadWorksEntry;
+  @Input() item: TrafficEventEntry;
 
   constructor() {}
 

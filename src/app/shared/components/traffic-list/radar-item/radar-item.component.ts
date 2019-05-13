@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ObjectHelper } from '../../../helpers/object.helpter';
+import { TrafficEventEntry } from '../../../models/traffic/traffic-event-entry.model';
 
 @Component({
   selector: 'gz-radar-item',
@@ -7,7 +8,7 @@ import { ObjectHelper } from '../../../helpers/object.helpter';
   styleUrls: ['./radar-item.component.scss'],
 })
 export class RadarItemComponent implements OnInit {
-  @Input() item;
+  @Input() item: TrafficEventEntry;
 
   constructor() {}
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ObjectHelper } from '../../../helpers/object.helpter';
-import { AnwbEventEntry } from '../../../models/traffic/anwb/anwb-event-entry.model';
 import { TrafficEventEntry } from '../../../models/traffic/traffic-event-entry.model';
+import { AnwbEvent } from '../../../models/traffic/anwb/anwb-event.model';
 
 @Component({
   selector: 'gz-traffic-jam-item',
@@ -41,7 +41,7 @@ export class TrafficJamItemComponent implements OnInit {
    */
   getTotalDistance(): number {
     return this.item.trafficJams.reduce(
-      (accTotal: number, currEvent: AnwbTrafficJam) => (currEvent.distance ? accTotal + currEvent.distance : 0),
+      (accTotal: number, currEvent: AnwbEvent) => (currEvent.distance ? accTotal + currEvent.distance : 0),
       0,
     );
   }
